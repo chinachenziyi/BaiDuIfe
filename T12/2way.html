@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<style type="text/css">
+		section{
+				width:250px;
+				height:400px;
+				overflow:hidden;
+				border:1px solid red;
+				position:absolute;
+				padding:0px;
+			}
+				ul{
+					width: 310%;
+					height: 100%;
+					position: relative;
+					left:0;
+					transition: 0.5s left;
+				}
+					li{
+						display:inline-block;
+						width:200px;
+						height:200px;
+						border:1px solid blue;
+					}
+						#d2,#d3{
+							margin-left:-9px;
+						}
+							#d1{
+								background-color:#00FFCC;
+							}
+							#d2{
+								background-color:#0099CC;
+							}
+							#d3{
+								background-color:#0033CC;
+							}
+				.control{
+					position:absolute;
+					right:0;
+					bottom:0;
+					z-index:5;
+				}
+					.control a{
+						text-decoration: none;
+						display: inline-block;
+						width: 28px;
+						height: 28px;
+						line-height: 28px;
+						font-size: 16px;
+						background-color: #fff;
+						opacity: 0.5;
+						text-align: center;
+						color: #cccccc;
+					}
+				#img1:target~.ull{
+					left:0%;
+				}
+				#img2:target~.ull{  <!-- #img2:target选择波浪号后面的所有兄弟元素 -->
+					left:-100%;
+				}
+				#img3:target~.ull{
+					left:-200%;
+				}
+			
+	</style>
+</head>
+
+<body>
+	<section>
+		<span id="img1"></span>  <!--设置的多余元素，用来选择.ull来实现.ull的拖动-->
+        <span id="img2"></span>
+        <span id="img3"></span>
+		<ul class="ull">
+			<li id="d1"></li>   <!-- 子元素不能选择父元素，所以target不能设置在li上-->
+			<li id="d2"></li>
+			<li id="d3"></li>
+		</ul>
+		
+		<div class="control">
+			<a href="#img1">1</a>
+            <a href="#img2">2</a>
+            <a href="#img3">3</a>
+		</div>
+	</section>
+</body>	
+</html>

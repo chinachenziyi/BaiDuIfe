@@ -48,7 +48,7 @@ footer{
 		footer #d3{
 			background-color:#0033CC;
 		}
-		footer div:target{
+		footer div:target{  /*target <a> 标签的目标位置，相当于设置了个显示块，将d1、d2、d3展示其中*/
 			z-index:1;
 			-webkit-animation:Boxslide 1s linear;
 		}
@@ -58,18 +58,21 @@ footer{
 			to  {left:0%;}
 		}
 	footer ul{
-		width:60px;
+		width:100px;
 		height:20px;
 		position:absolute;
 		right:-2px;
-		bottom:-18px;
+		bottom:-16px;
 		/* border:1px solid red; */
 		z-index:5;
 	}
 		footer ul li{
-			display:inline;
+			width:20px;
+			height:20px;
+			display:inline-block;/*这里一定要是block，不要忘记*/
 			margin:0px 3px;
 			background-color:#e0e0e0;
+			text-align:center;
 		}
 			footer li a{
 				color:black;
