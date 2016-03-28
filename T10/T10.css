@@ -1,7 +1,6 @@
 body{
 	width:100%;
 	display:flex;
-	flex-flow:row wrap;
 	justify-content:space-between;
 	align-items:center;
 	padding:20px 0px;
@@ -26,3 +25,14 @@ body{
 			height:200px;
 			border:1px solid #0f0;
 		}
+		
+	@media screen and (max-width:680px){
+		body{
+			display:flex;
+			align-items:flex-start;
+			flex-wrap:wrap;
+		}
+		.d4{
+			order:-1;
+		}
+	}
