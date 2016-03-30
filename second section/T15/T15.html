@@ -1,0 +1,95 @@
+﻿<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+
+  <ul id="source">
+    <li>北京空气质量：<b>90</b></li>
+    <li>上海空气质量：<b>70</b></li>
+    <li>天津空气质量：<b>80</b></li>
+    <li>广州空气质量：<b>50</b></li>
+    <li>深圳空气质量：<b>40</b></li>
+    <li>福州空气质量：<b>32</b></li>
+    <li>成都空气质量：<b>90</b></li>
+  </ul>
+
+  <ul id="resort">
+    <!-- 
+    <li>第一名：北京空气质量：<b>90</b></li>
+    <li>第二名：北京空气质量：<b>90</b></li>
+    <li>第三名：北京空气质量：<b>90</b></li>
+     -->
+
+  </ul>
+
+  <button id="sort-btn">排序</button>
+
+<script type="text/javascript">
+
+/*
+ * getData方法
+ * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
+ * 返回一个数组，格式见函数中示例
+ */
+function getData() {
+	var arr = document.getElementById('source').getElementsByTagName('li'),data=[];//选择标签为li，凑成一组数组，getElementsByTagName[0],表示第一个li
+	for(var i=0;i<arr.length;i++){
+		var txt = arr[i].textContent;//取得第i个li及其子节点的文本内容
+		var temp = txt.split('空气质量：');//以‘空气质量：’为分隔符，分成两个字符串内容
+		var city = temp[0];
+		var num = temp[1];
+		data.push([city,+num]);//+将字符串转换为整形
+	}
+	<!-- document.write(data[0]); -->
+	return data;
+
+}
+
+/**
+ * sortAqiData
+ * 按空气质量对data进行从小到大的排序
+ * 返回一个排序后的数组
+ */
+function sortAqiData(data) {
+	data.sort(function(x,y){
+		return y[1]-x[1];
+		});
+	return data;
+}
+
+/**
+ * render
+ * 将排好序的城市及空气质量指数，输出显示到id位resort的列表中
+ * 格式见ul中的注释的部分
+ */
+function render(data) {
+		var j = 0;
+	for(var i=0;i<data.length;i++){
+		var exli= document.createElement("li");
+		exli.innerHTML = 
+			'第'+(++j)+'名:'+data[i][0]+' '+data[i][1];
+		document.getElementById('resort').appendChild(exli);
+}
+}
+function btnHandle() {
+  var aqiData = getData();
+  aqiData = sortAqiData(aqiData);
+  render(aqiData);
+}
+
+
+function init() {
+// 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
+	document.getElementById("sort-btn").onclick = function(){
+	 var lilistofresort = document.querySelectorAll('#resort li');//选择第一个id为resort的li。
+	  if(lilistofresort.length == 0){btnHandle()};//如果没有li生成，则开始生成。
+}
+}
+init();
+
+</script>
+</body>
+</html>
